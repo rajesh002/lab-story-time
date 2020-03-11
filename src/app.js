@@ -56,13 +56,18 @@ function doesFriendExist(text, num) {
 //How many sweets did her friend get to eat?
 
 function sweetTooth(totalNoOfSweets, sweetsConsumedByKaren, sweetsConsumedInNMeters, metersToTravel) {
-    // if ((typeof (totalNoOfSweets) != 'NaN') && (typeof (sweetsConsumedByKaren) != 'NaN') && (typeof (sweetsConsumedInNMeters) != 'NaN') && (typeof (metersToTravel) != 'NaN')) {
+    if ((typeof (totalNoOfSweets) == 'undefined') || (typeof (sweetsConsumedByKaren) == 'undefined') || (typeof (sweetsConsumedInNMeters) == 'undefined') || (typeof (metersToTravel) == '')) {
+        return 'No sweets for Karen\'s friend'
+    }
     var sweetInTravel = metersToTravel / sweetsConsumedInNMeters;
-    var res = (totalNoOfSweets - (sweetsConsumedByKaren + sweetInTravel)) / 2
-    if ((totalNoOfSweets == 0) || (res < 0))
-        return 0;
-    else
-        return res;
+    if (sweetInTravel > 0) {
+        var res = (totalNoOfSweets - (sweetsConsumedByKaren + sweetInTravel)) / 2
+        if ((totalNoOfSweets == 0) || (res < 0))
+            return 0;
+        else
+            return res;
+    }
+    return 0
 
 }
 
