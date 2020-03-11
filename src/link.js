@@ -8,6 +8,7 @@ var nextString = [
     "Haunting discovery",
     "Rising paranoia"
 ];
+
 function updateProgression(i, p) {
     filler.innerHTML = "Task: Complete Trial " + (i + 1) + "<br>Next: " + nextString[i];
     if (story.lastElementChild == filler)
