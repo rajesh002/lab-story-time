@@ -36,6 +36,8 @@ function moreAboutKaren(parents, noOfSiblings, isNuclearFamily) {
 //Check which one those is not a number (NaN) and return that value
 
 function doesFriendExist(text, num) {
+    if ((text == "NaN") && typeof (num == NaN))
+        return 'NaN'
     if (typeof (text) == 'NaN')
         return NaN;
     else
@@ -56,17 +58,22 @@ function doesFriendExist(text, num) {
 //How many sweets did her friend get to eat?
 
 function sweetTooth(totalNoOfSweets, sweetsConsumedByKaren, sweetsConsumedInNMeters, metersToTravel) {
-    if ((typeof (totalNoOfSweets) == 'undefined') || (typeof (sweetsConsumedByKaren) == 'undefined') || (typeof (sweetsConsumedInNMeters) == 'undefined') || (typeof (metersToTravel) == '')) {
+    if ((typeof (totalNoOfSweets) == 'undefined') || (typeof (sweetsConsumedByKaren) == 'undefined') || (typeof (sweetsConsumedInNMeters) == 'undefined') || (typeof (metersToTravel) == 'undefined')) {
         return 'No sweets for Karen\'s friend'
     }
-    var sweetInTravel = metersToTravel / sweetsConsumedInNMeters;
-    if (sweetInTravel > 0) {
-        var res = (totalNoOfSweets - (sweetsConsumedByKaren + sweetInTravel)) / 2
-        if ((totalNoOfSweets == 0) || (res < 0))
-            return 0;
-        else
-            return res;
+    if ((typeof (totalNoOfSweets) != 'number') || (typeof (sweetsConsumedByKaren) != 'number') || (typeof (sweetsConsumedInNMeters) != 'number') || (typeof (metersToTravel) != 'number')) {
+        return 'No sweets for Karen\'s friend'
     }
+
+    var sweetInTravel = metersToTravel * sweetsConsumedInNMeters;
+
+    var res = (totalNoOfSweets - (sweetsConsumedByKaren + sweetInTravel)) / 2
+    if (res <= 0)
+        return 0
+    if (totalNoOfSweets == 0)
+        return 0;
+    else
+        return res;
     return 0
 
 }
